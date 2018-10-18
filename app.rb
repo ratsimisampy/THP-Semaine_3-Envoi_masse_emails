@@ -8,9 +8,11 @@ Done.new.perform
 Index.new.perform
 =end
 
-require 'bundler'
-Bundler.require
+# require 'bundler'
+# Bundler.require
+# $:.unshift File.expand_path("./../lib", __FILE__)
 require './lib/app/townhalls_scrapper.rb'
+require './lib/app/townhalls_mailer.rb'
 require 'json'
 #require 'townhallsScrapper'
 
@@ -24,8 +26,12 @@ class TownhallsAdderToDb < TownhallsScrapper
   end
 
   def perform
-    save_into_json(TownhallsScrapper.new.perform
+    save_into_json(TownhallsScrapper.new.perform)
   end
 end
 
-TownhallsAdderToDb.new.perform
+# TownhallsAdderToDb.new.perform
+
+mail_sender = TownhallsMailer.new
+puts 'test'
+mail_sender.send_mail

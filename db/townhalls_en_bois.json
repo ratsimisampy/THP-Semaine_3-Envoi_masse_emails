@@ -1,0 +1,17 @@
+{
+  "ville":{
+    "mail": "thp-student@mailinator.com",
+    "département": "nom du département",
+    "handle": "@tweet"
+  },
+  "ville2":{
+    "mail": "thp-student@mailinator.com",
+    "département": "nom2 du département",
+    "handle": "@tweet2"
+  },
+  "ville3":{
+    "mail": "thp-student@mailinator.com",
+    "département": "nom3 du département",
+    "handle": "@tweet3"
+  }
+}

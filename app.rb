@@ -6,10 +6,9 @@ $:.unshift File.expand_path("./../lib", __FILE__)
 
 Done.new.perform
 Index.new.perform
-=end
 
-require 'bundler'
-Bundler.require
+#require 'bundler'
+#Bundler.require
 require './lib/app/townhalls_scrapper.rb'
 require 'json'
 #require 'townhallsScrapper'
@@ -29,3 +28,9 @@ class TownhallsAdderToDb < TownhallsScrapper
 end
 
 TownhallsAdderToDb.new.perform
+=end
+require './lib/app/townhalls_scrapper.rb'
+require 'json'
+require './lib/app/townhalls_adder_to_db.rb'
+
+TownhallsAdderToDb.new("./db/townhalls.json").perform

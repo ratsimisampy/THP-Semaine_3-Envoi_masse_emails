@@ -1,0 +1,3 @@
+class TownhallsMailer
+
+end

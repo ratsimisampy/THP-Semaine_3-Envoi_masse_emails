@@ -8,8 +8,8 @@ Done.new.perform
 Index.new.perform
 =end
 
-require 'bundler'
-Bundler.require
+#require 'bundler'
+#Bundler.require
 require './lib/app/townhalls_scrapper.rb'
 require 'json'
 #require 'townhallsScrapper'
@@ -24,7 +24,7 @@ class TownhallsAdderToDb < TownhallsScrapper
   end
 
   def perform
-    save_into_json(TownhallsScrapper.new.perform
+    save_into_json(TownhallsScrapper.new.perform)
   end
 end
 

@@ -5,27 +5,8 @@ require 'nokogiri'
 
 class TownhallsScrapper
 
-  def def_hash(city, mail, departement, handle)
-    hash_def = Hash.new
-    name = name
-    hash_def = {"city": city.join, "email": mail.join, "departement": departement.join, "handle": handle.join}
-    return hash_def
-  end
-
-  def array(city, mail, departement, handle)
-    array_city = []
-    array_mail = []
-    array_departement = []
-    array_handle = []
-    array_city.push(city)
-    array_mail.push(mail)
-    array_departement.push(departement)
-    array_handle.push(handle)
-    return def_hash(array_city, array_mail, array_departement, array_handle)
-  end
-
   def get_the_email_of_a_townhal_from_its_webpage(url_for_mail)
-    array_for_city = []
+    hash_for_city = Hash.new
     doc = Nokogiri::HTML(open(url_for_mail))
     doc.xpath('/html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]').each do |mail|
       mail = mail.text
@@ -36,11 +17,11 @@ class TownhallsScrapper
           departement = departement.text
           handle = city.gsub(/[" "]/, "_")
           handle = "@" + handle
-          array_for_city << array(city, mail, departement, handle)
+            hash_for_city = {"city": city, "email": mail, "departement": departement, "handle": handle}
         end
       end
     end
-    return array_for_city.join
+    return hash_for_city
   end
 
   def get_all_the_urls_of_val_doise_townhalls(url_for_state)

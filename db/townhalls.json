@@ -1,0 +1,12 @@
+{
+  "ville":{
+    "mail": "contact@ville.com",
+    "département": "nom du département",
+    "handle": "@tweet"
+  },
+  "ville2":{
+    "mail": "contact@ville2.com",
+    "département": "nom2 du département",
+    "handle": "@tweet2"
+  }
+}

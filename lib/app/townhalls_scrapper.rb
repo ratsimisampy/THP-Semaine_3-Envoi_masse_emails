@@ -8,7 +8,7 @@ class TownhallsScrapper
   def def_hash(city, mail, departement, handle)
     hash_def = Hash.new
     name = name
-    hash_def = {'city' => city.join, 'email' => mail.join, 'departement' => departement.join, 'handle' => handle.join}
+    hash_def = {"city": city.join, "email": mail.join, "departement": departement.join, "handle": handle.join}
     return hash_def
   end
 
@@ -34,13 +34,13 @@ class TownhallsScrapper
         city = city.slice(0..-9)
         doc.xpath('/html/body/div[1]/main/section[4]/div/table/tbody/tr[1]/td[2]').each do |departement|
           departement = departement.text
-          handle = city.gsub(/[" "]/, "_").slice(0..-9)
+          handle = city.gsub(/[" "]/, "_")
           handle = "@" + handle
           array_for_city << array(city, mail, departement, handle)
         end
       end
     end
-    return array_for_city
+    return array_for_city.join
   end
 
   def get_all_the_urls_of_val_doise_townhalls(url_for_state)

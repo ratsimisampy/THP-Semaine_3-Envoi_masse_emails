@@ -1,14 +1,11 @@
 # THP-Semaine_3-Envoi_masse_emails
 The Hacking Project - Teamwork learning, together on a single app in a single repo
 
-# PROJET
-## vous allez scrapper, enregistrer dans un spreadsheet, puu
-is envoyer des emails, avec une relance par Twitter. Le touu
-t dans un dossier ruby bien rangé, en POO.
 
-Votre mission est d'envoyer un email à toutes les mairies dd
-e trois départements de votre choix et de leur dire qu'ils
-devraient monter un groupe THP dans leur commune
+# PROJET
+## vous allez scrapper, enregistrer dans un spreadsheet, puis envoyer des emails, avec une relance par Twitter. Le tout dans un dossier ruby bien rangé, en POO.
+
+Votre mission est d'envoyer un email à toutes les mairies de trois départements de votre choix et de leur dire qu'ils devraient monter un groupe THP dans leur commune
 
 - *récupérer les emails de trois départements*
 =====> OISE-SOMME-AISNE
@@ -19,27 +16,27 @@ devraient monter un groupe THP dans leur commune
 =====> département (numéro ou nom)
 
 - *Envoyer les emails*
+=====> (tester sur des BDDs en bois avec vos adresses emails)
 =====> reprendre chaque colonne de ton CSV/JSON
 
+```
+Bonjour,
+Je m'appelle [PRÉNOM], je suis élève à The Hacking Project, une formation au code gratuite, sans locaux, sans sélection, sans restriction géographique. La pédagogie de ntore école est celle du peer-learning, où nous travaillons par petits groupes sur des projets concrets qui font apprendre le code. Le projet du jour est d'envoyer (avec du codage) des emails aux mairies pour qu'ils nous aident à faire de The Hacking Project un nouveau format d'éducation pour tous.
+
+Déjà 500 personnes sont passées par The Hacking Project. Est-ce que la mairie de [NOM_COMMUNE] veut changer le monde avec nous ?
 
 
+Charles, co-fondateur de The Hacking Project pourra répondre à toutes vos questions : 06.95.46.60.80
+```
 
 
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
+- *Petite relance Twitter*
+=====> repasser sur chaque élément du CSV/JSON et ajouter une colonne supplémentaire avec le handle twitter (recherche avec mairie [NOM_COMMUNE] en prenant le premier résultat)
+=====> follow les users concernés. Avec un compte genre "Apprendre à coder" c'est pas mal
+
+- *Structure du dossier*
+=====> Dotenv
+
 ```
 ultimate_townhall
 ├── .gitignore

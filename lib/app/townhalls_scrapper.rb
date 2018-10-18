@@ -1,64 +1,61 @@
 require 'open-uri'
 require 'nokogiri'
 
+# adresse mail des mairies selon département
+
 class TownhallsScrapper
 
-  def def_array(key)
-    array_key = Array.new
-    array_key.push(key)
+  def def_hash(city, mail, departement, handle)
+    array = Array.new
+    name = name
+    array_def = array.push({'city' => city, 'email' => mail, 'departement' => departement, 'handle' => handle})
+    return array
   end
 
-	def perform
-		get_all_the_urls_of_townhalls("hauts-de-seine")
-		#get_all_the_urls_of_townhalls("seine-saint-denis")
-		#get_all_the_urls_of_townhalls("yvelines")
-	end	
+  def array(city, mail, departement, handle)
+    array_city = []
+    array_mail = []
+    array_departement = []
+    array_handle = []
+    array_city.push(city)
+    array_mail.push(mail)
+    array_departement.push(departement)
+    array_handle.push(handle)
+    return def_hash(array_city, array_mail, array_departement, array_handle)
+  end
 
+  def get_the_email_of_a_townhal_from_its_webpage(url_for_mail)
+    array_for_city = []
+    doc = Nokogiri::HTML(open(url_for_mail))
+    doc.xpath('/html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]').each do |mail|
+      mail = mail.text
+      doc.xpath('/html/body/div/main/section[1]/div/div/div/h1').each do |city|
+        city = city.text
+        doc.xpath('/html/body/div[1]/main/section[4]/div/table/tbody/tr[1]/td[2]').each do |departement|
+          departement = departement.text
+          handle = city.gsub(/[" "]/, "_").slice(0..-9)
+          handle = "@#{handle}"
+          array_for_city << array(city, mail, departement, handle)
+        end
+      end
+    end
+    return array_for_city
+  end
 
-	# E-mails :
-	def  get_the_email_of_a_townhal
-		doc = Nokogiri::HTML(open("http://annuaire-des-mairies.com/" + "#{@mairie_url}" ))
-		doc.xpath('/html/body/div[1]/main/section[2]/div/table/tbody/tr[4]/td[2]').each do |node|
-##############################
-	  		return def_array(node.text)
-	  		dept_of_townhalls                            # Appel chercher la méthode des Departement
-		end
-	end
+  def get_all_the_urls_of_val_doise_townhalls(url_for_state)
+    array_for_url = []
+    doc = Nokogiri::HTML(open(url_for_state))
+    doc.xpath('//a[@class = "lientxt"]').each do |link|
+      url = 'http://annuaire-des-mairies.com/' + link['href']
+      array_for_url << get_the_email_of_a_townhal_from_its_webpage(url)
+    end
+    return array_for_url
+  end
 
-
-	# Names (and URL) :
-	def  get_all_the_urls_of_townhalls(name_departement)
-		doc = Nokogiri::HTML(open("http://annuaire-des-mairies.com/" + "#{name_departement}" + ".html"))
-		doc.xpath('//a[@class = "lientxt"]').each do |link|
-	  		@mairie_url =  link['href']                    # Récupère l'url des mairies 
-	  		@mairie_name = link.text  
-################################
-	  		def_array(@mairie_name)                              # Affiche le nom des villes des mairies 
-		#	get_the_email_of_a_townhal                     # Appel chercher la méthode des E-mails
-	  	end
-	end
-	# Dept :
-	def dept_of_townhalls
-		doc = Nokogiri::HTML(open("http://annuaire-des-mairies.com/" + "#{@mairie_url}"))
-		doc.xpath('/html/body/div[1]/main/section[4]/div/table/tbody/tr[1]/td[2]').each do |node|
-			@mairie_dept = node.text
-#################################
-			return def_array(@mairie_dept)							# Affiche le département de chacune des mairies 
-			handles_of_townhalls                            
-		end
-	end
-
-	# Handles : 
-	def handles_of_townhalls
-#################################
-		@mairie_handle = "#{@mairie_name.gsub(/[" "]/, "_")}"
-		return def_array(@mairie_handle)
-	end
+  def perform
+    get_all_the_urls_of_val_doise_townhalls('http://annuaire-des-mairies.com/hauts-de-seine.html')
+    get_all_the_urls_of_val_doise_townhalls('http://annuaire-des-mairies.com/seine-saint-denis.html')
+    get_all_the_urls_of_val_doise_townhalls('http://annuaire-des-mairies.com/yvelines.html')
+  end
 end
-
-#TownhallsScrapper.new.perform
-
-
-
-
 

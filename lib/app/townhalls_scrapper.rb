@@ -6,10 +6,10 @@ require 'nokogiri'
 class TownhallsScrapper
 
   def def_hash(city, mail, departement, handle)
-    array = Array.new
+    hash_def = Hash.new
     name = name
-    array_def = array.push({'city' => city, 'email' => mail, 'departement' => departement, 'handle' => handle})
-    return array
+    hash_def = {'city' => city.join, 'email' => mail.join, 'departement' => departement.join, 'handle' => handle.join}
+    return hash_def
   end
 
   def array(city, mail, departement, handle)
@@ -31,10 +31,11 @@ class TownhallsScrapper
       mail = mail.text
       doc.xpath('/html/body/div/main/section[1]/div/div/div/h1').each do |city|
         city = city.text
+        city = city.slice(0..-9)
         doc.xpath('/html/body/div[1]/main/section[4]/div/table/tbody/tr[1]/td[2]').each do |departement|
           departement = departement.text
           handle = city.gsub(/[" "]/, "_").slice(0..-9)
-          handle = "@#{handle}"
+          handle = "@" + handle
           array_for_city << array(city, mail, departement, handle)
         end
       end

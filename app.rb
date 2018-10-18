@@ -8,13 +8,13 @@ Done.new.perform
 Index.new.perform
 =end
 
-#require 'bundler'
-#Bundler.require
+require 'bundler'
+Bundler.require
 require './lib/app/townhalls_scrapper.rb'
 require 'json'
-#require 'TownhallsScrapper'
+#require 'townhallsScrapper'
 
-class TownhallsAdderToDb
+class TownhallsAdderToDb < TownhallsScrapper
 
   def save_into_json(hash)
     File.open("./db/townhalls.json", 'w') do |f|
@@ -23,9 +23,9 @@ class TownhallsAdderToDb
     puts "JSON file saved"
   end
 
-  def perform_add
-    save_into_json(perform_scrapping)
+  def perform
+    save_into_json(TownhallsScrapper.new.perform
   end
 end
 
-TownhallsAdderToDb.new.perform_add
+TownhallsAdderToDb.new.perform

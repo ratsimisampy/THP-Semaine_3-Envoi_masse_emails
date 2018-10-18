@@ -8,16 +8,19 @@ The Hacking Project - Teamwork learning, together on a single app in a single re
 Votre mission est d'envoyer un email à toutes les mairies de trois départements de votre choix et de leur dire qu'ils devraient monter un groupe THP dans leur commune
 
 - *récupérer les emails de trois départements*
+
 =====> OISE-SOMME-AISNE
 
-- *enregistrer ces emails dans un fichier CSV/JSON*
-=====> email
-=====> nom de la commune
-=====> département (numéro ou nom)
+=====> enregistrer ces emails dans un fichier CSV/JSON
+
+=====> BDD {email, nom de la commune, département}
 
 - *Envoyer les emails*
+
 =====> (tester sur des BDDs en bois avec vos adresses emails)
+
 =====> reprendre chaque colonne de ton CSV/JSON
+
 
 ```
 Bonjour,
@@ -31,11 +34,14 @@ Charles, co-fondateur de The Hacking Project pourra répondre à toutes vos ques
 
 
 - *Petite relance Twitter*
+
 =====> repasser sur chaque élément du CSV/JSON et ajouter une colonne supplémentaire avec le handle twitter (recherche avec mairie [NOM_COMMUNE] en prenant le premier résultat)
+
 =====> follow les users concernés. Avec un compte genre "Apprendre à coder" c'est pas mal
 
 - *Structure du dossier*
-=====> Dotenv
+
+=====> utiliser Dotenv
 
 ```
 ultimate_townhall

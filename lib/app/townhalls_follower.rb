@@ -1,19 +1,27 @@
+=begin
+GEM UTILISÉE:
 require 'twitter'
 require 'twitter/search_results'
 require 'json'
 require 'dotenv'
 
 Dotenv.load
+=end
 
-class BotTwitter
+class TownhallsFollower
+  attr_accessor :file_db
+
+  def initialize(file_db)
+    @file_db = file_db
+  end
 
 	def perform
 
-		initialize
+		initialize_bot
 
 	end
 
-	def initialize
+	def initialize_bot
 
 
 		@client = Twitter::REST::Client.new do |config|
@@ -23,7 +31,7 @@ class BotTwitter
   			config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
 		end
 
-		    = JSON.parse(File.read("./db/townhalls.json"))
+		    = JSON.parse(File.read(@file_db))
 
 		 search_handle
 		# follow_handle
@@ -42,8 +50,4 @@ class BotTwitter
 		@client.follow (@temp)	
 	end
 end	
-
-
-
-test = BotTwitter.new.perform
 

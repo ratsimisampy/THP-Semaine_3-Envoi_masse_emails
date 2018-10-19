@@ -1,13 +1,16 @@
+=begin
+GEM UTILISÉE :
 require 'google/apis/gmail_v1'
 require 'googleauth'
 require 'googleauth/stores/file_token_store'
 require 'base64'
 require 'mime'
 include MIME
+=end
 
 class TownhallsMailer
-  attr_accessor :emails
-  def initialize
+  attr_accessor :file_db
+  def initialize(file_db)
     # Valeurs de configuration de l'API
     @oob_uri = 'urn:ietf:wg:oauth:2.0:oob'.freeze
     @application_name = 'Townhalls mailer'.freeze
@@ -15,7 +18,7 @@ class TownhallsMailer
     @token_path = 'token.yaml'.freeze
     @scope = Google::Apis::GmailV1::AUTH_GMAIL_SEND
 
-    @emails = JSON.parse(File.read("./db/townhalls.json"))
+    @emails = JSON.parse(File.read(file_db))
 
     ##
     # Ensure valid credentials, either by restoring from the saved credentials

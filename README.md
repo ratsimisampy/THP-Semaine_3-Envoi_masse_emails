@@ -19,7 +19,8 @@ git bundle install
 ruby app.rb
 
 ```
-- Votre promotion est faite :riche:
+- Votre promotion est faite   :riche:   
+**BONUS : Follow les maires sur twitter, si tu récupéres les [Keys API](https://developer.twitter.com)**
 
 ## Organisation du dossier
 ```
@@ -66,6 +67,11 @@ Vous y êtes!
 - *ruby '2.5.1'* : **on code en ruby ici**
 - *gem 'rubocop'* : **pour indenter nos fichiers (chacun a sa façon de coder!)**
 - *source "https://rubygems.org"* : **il manquerait plus qu'on code les gem!**
+- *gem 'twitter'* : **pour utiliser l'API twitter et follow les maires**
+- *gem 'google_drive'* : **pour stocker les données sur le cloud, ET OUAIS ça fait beaucoup de monde!**
+- *gem 'google-api-client'* : **pour l'API google**
+- *gem 'nokogiri'* : **pour récupérer données en xpath ou css**
+- *gem 'json'* : **pour lire et écrire notre base de donnée**
 
 #### 
 

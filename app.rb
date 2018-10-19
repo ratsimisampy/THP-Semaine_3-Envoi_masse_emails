@@ -1,16 +1,29 @@
-#$:.unshift File.expand_path("./../lib", __FILE__)
-=begin
-
-mail_sender = TownhallsMailer.new
-puts 'test'
-mail_sender.send_mail
-=end
 require './lib/app/townhalls_scrapper.rb'
 require 'json'
-require './lib/app/townhalls_adder_to_db.rb'
 require './lib/views/done.rb'
+require './lib/app/townhalls_adder_to_db.rb'
+require './lib/app/townhalls_follower.rb'
 require './lib/views/index.rb'
+require 'google/apis/gmail_v1'
+require 'googleauth'
+require 'googleauth/stores/file_token_store'
+require 'base64'
+require 'mime'
+include MIME
+require 'twitter'
+require 'twitter/search_results'
+require 'json'
+require 'dotenv'
+Dotenv.load
 
 
-Done.new("./db/townhalls.json").perform
-Index.new.perform
+class App
+
+  def perform
+  Done.new("./db/townhalls.json").perform
+  Index.new.perform
+  end
+
+end
+
+App.new.perform
